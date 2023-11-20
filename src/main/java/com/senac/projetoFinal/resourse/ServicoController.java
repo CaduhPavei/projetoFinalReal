@@ -1,7 +1,5 @@
 package com.senac.projetoFinal.resourse;
 
-import com.senac.projetoFinal.models.Cliente;
-import com.senac.projetoFinal.models.Pessoa;
 import com.senac.projetoFinal.models.Servico;
 import com.senac.projetoFinal.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;

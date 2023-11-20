@@ -50,6 +50,7 @@ public class VendaController extends AbstractController {
         Venda alterado = service.alterar(id, entity);
         return ResponseEntity.ok().body(alterado);
     }
+
     @PostMapping("{id}/item")
     public ResponseEntity createItem(@RequestBody ItemVenda entity) {
         ItemVenda save = itemVendaService.salvar(entity);
