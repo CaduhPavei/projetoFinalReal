@@ -24,7 +24,7 @@ public class VendaController extends AbstractController {
     @PostMapping
     public ResponseEntity create(@RequestBody Venda entity) {
         Venda save = service.salvar(entity);
-        return ResponseEntity.created(URI.create("/api/vendas/itens" + entity.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/vendas" + entity.getId())).body(save);
     }
 
     @GetMapping
@@ -51,10 +51,16 @@ public class VendaController extends AbstractController {
         return ResponseEntity.ok().body(alterado);
     }
 
-    @PostMapping("{id}/item")
+    @PostMapping("/item")
     public ResponseEntity createItem(@RequestBody ItemVenda entity) {
+
+//        ItemVenda save = itemVendaService.salvar(entity);
+//        itemVendaService.salvar(entity);
+//        return ResponseEntity.created(URI.create("/api/vendas/item" + entity.getId())).body(save);
+
         ItemVenda save = itemVendaService.salvar(entity);
-        return ResponseEntity.created(URI.create("/api/vendas/itens" + entity.getId())).body(save);
+        itemVendaService.subtraiEstoque(save.getId(), entity.getQuantidade());
+        return ResponseEntity.created(URI.create("/api/vendas/item" + entity.getId())).body(save);
     }
     @GetMapping("{id}/item")
     public ResponseEntity findByVenda(@PathVariable("id") Long id) {

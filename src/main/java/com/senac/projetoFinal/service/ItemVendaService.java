@@ -1,7 +1,7 @@
 package com.senac.projetoFinal.service;
 
+import com.senac.projetoFinal.enterprise.ValidationException;
 import com.senac.projetoFinal.models.ItemVenda;
-import com.senac.projetoFinal.models.Produto;
 import com.senac.projetoFinal.repository.ItemVendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,16 @@ import java.util.Optional;
 public class ItemVendaService {
     @Autowired
     private ItemVendaRepository repository;
+
+
+    public void subtraiEstoque(Long itemId, Integer qtd){
+        Optional<ItemVenda> optional= repository.findById(itemId);
+        if (optional.isPresent()){
+            var itemVenda = optional.get();
+            itemVenda.setQuantidade(itemVenda.getQuantidade()-qtd);
+            repository.save(itemVenda);
+        }
+    }
 
     public ItemVenda salvar(ItemVenda entity) {
 

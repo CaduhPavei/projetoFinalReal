@@ -3,7 +3,6 @@ package com.senac.projetoFinal.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.swing.*;
 import java.time.LocalDate;
 
 @Entity

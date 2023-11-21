@@ -1,8 +1,5 @@
 package com.senac.projetoFinal.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.jfr.MemoryAddress;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -15,7 +12,7 @@ public class ItemVenda extends EntityId{
     @JoinColumn(name="produto_id")
     private Produto produto;
     @Column(name="quantidade")
-    private Double quantidade;
+    private Integer quantidade;
     @Column(name = "desconto")
     private Double desconto;
     @ManyToOne
@@ -30,11 +27,11 @@ public class ItemVenda extends EntityId{
         this.produto = produto;
     }
 
-    public Double getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Double quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
