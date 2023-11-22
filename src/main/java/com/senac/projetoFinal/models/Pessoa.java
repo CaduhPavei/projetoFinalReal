@@ -12,8 +12,9 @@ public class Pessoa extends EntityId{
     private String endereco;
     @Column(name="data_nascimento",nullable = false)
     private LocalDate dataNascimento;
-    @Column(name="contato",nullable = false)
-    private String contato;
+    @Column(name="email",nullable = false)
+    private String email;
+
 
     public String getNome() {
         return nome;
@@ -39,12 +40,12 @@ public class Pessoa extends EntityId{
         this.dataNascimento = dataNascimento;
     }
 
-    public String getContato() {
-        return contato;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContato(String contato) {
-        this.contato = contato;
+    public void setEmail(String contato) {
+        this.email = contato;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class Pessoa extends EntityId{
                 "nome='" + nome + '\'' +
                 ", endereco='" + endereco + '\'' +
                 ", dataNascimento=" + dataNascimento +
-                ", contato='" + contato + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

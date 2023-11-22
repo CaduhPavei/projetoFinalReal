@@ -2,10 +2,13 @@ package com.senac.projetoFinal.service;
 
 import com.senac.projetoFinal.enterprise.ValidationException;
 import com.senac.projetoFinal.models.ItemVenda;
+import com.senac.projetoFinal.models.Produto;
 import com.senac.projetoFinal.repository.ItemVendaRepository;
+import com.senac.projetoFinal.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,13 +17,27 @@ public class ItemVendaService {
     @Autowired
     private ItemVendaRepository repository;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
 
     public void subtraiEstoque(Long itemId, Integer qtd){
         Optional<ItemVenda> optional= repository.findById(itemId);
+
         if (optional.isPresent()){
-            var itemVenda = optional.get();
-            itemVenda.setQuantidade(itemVenda.getQuantidade()-qtd);
-            repository.save(itemVenda);
+            Optional<Produto> byId = produtoRepository.findById(optional.get().getProduto().getId());
+
+            if(byId.isPresent()){
+                Integer quantidade = byId.get().getQuantidade();
+                if(quantidade>=qtd) {
+                    Integer novaQuantidade = quantidade - qtd;
+                    Produto produto = byId.get();
+                    produto.setQuantidade(novaQuantidade);
+                    produtoRepository.save(produto);
+                }else{
+                    throw new ValidationException("Quantidade solicita indisponível! Apenas "+quantidade+" em estoque.");
+                }
+            }
         }
     }
 

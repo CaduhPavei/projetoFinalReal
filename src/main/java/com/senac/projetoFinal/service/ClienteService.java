@@ -39,7 +39,7 @@ public class ClienteService {
             Cliente cliente = encontrado.get();
 
             cliente.setCpf(alterado.getCpf());
-            cliente.setContato(alterado.getContato());
+            cliente.setEmail(alterado.getEmail());
             cliente.setEndereco(alterado.getEndereco());
             cliente.setDataNascimento(alterado.getDataNascimento());
             cliente.setNome(alterado.getNome());
