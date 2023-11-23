@@ -3,22 +3,25 @@ package com.senac.projetoFinal.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class UsuarioPermissoes extends EntityId {
-    //to many
+
+    @OneToMany
     @JoinColumn(name = "user_id")
-    private Usuario user;
+    private List<Usuario> user;
     @Column(name = "rotina")
     private String rotina;
     @Column(name = "nivel")
     private String nivel;
 
-    public Usuario getUser() {
+    public List<Usuario> getUser() {
         return user;
     }
 
-    public void setUser(Usuario user) {
+    public void setUser(List<Usuario> user) {
         this.user = user;
     }
 

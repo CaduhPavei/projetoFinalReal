@@ -1,12 +1,8 @@
 package com.senac.projetoFinal.resourse;
 
-import com.senac.projetoFinal.models.Cliente;
-import com.senac.projetoFinal.models.Pessoa;
 import com.senac.projetoFinal.models.Usuario;
-import com.senac.projetoFinal.service.ClienteService;
 import com.senac.projetoFinal.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +19,7 @@ public class UsuarioController  extends AbstractController{
     @PostMapping
     public ResponseEntity create(@RequestBody Usuario entity) {
         Usuario save = service.salvar(entity);
-        return ResponseEntity.created(URI.create("/api/clientes/" + entity.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/usuarios/" + entity.getId())).body(save);
     }
 
     @GetMapping

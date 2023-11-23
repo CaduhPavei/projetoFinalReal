@@ -1,14 +1,13 @@
 package com.senac.projetoFinal.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class UsuarioAcessos extends EntityId{
 
-    //Tomany
+    @OneToOne
     @JoinColumn(name = "user_id")
     private Usuario user;
     @Column(name = "data_acesso")

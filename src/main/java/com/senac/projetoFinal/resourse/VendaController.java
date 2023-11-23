@@ -54,9 +54,6 @@ public class VendaController extends AbstractController {
     @PostMapping("/item")
     public ResponseEntity createItem(@RequestBody ItemVenda entity) {
 
-//        ItemVenda save = itemVendaService.salvar(entity);
-//        itemVendaService.salvar(entity);
-//        return ResponseEntity.created(URI.create("/api/vendas/item" + entity.getId())).body(save);
 
         ItemVenda save = itemVendaService.salvar(entity);
         itemVendaService.subtraiEstoque(save.getId(), entity.getQuantidade());

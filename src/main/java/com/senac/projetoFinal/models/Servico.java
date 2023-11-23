@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Servico extends EntityId{
+
     @Column(name="tipo_servico")
     private String tipoServico;
     @Column(name="descricao_servico")

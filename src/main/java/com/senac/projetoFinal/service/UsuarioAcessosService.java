@@ -3,10 +3,12 @@ package com.senac.projetoFinal.service;
 import com.senac.projetoFinal.models.UsuarioAcessos;
 import com.senac.projetoFinal.repository.UsuarioAcessosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UsuarioAcessosService {
 
     @Autowired

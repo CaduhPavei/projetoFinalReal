@@ -17,20 +17,22 @@ public class UsuarioService {
     private UsuarioRepository repository;
 
     public Usuario salvar(Usuario entity) {
-        if(entity.getUsername().length()<3){
-            throw new ValidationException("O nome do usuário deve ter mais que 3 caracteres");
+        if(entity.getNomeUsuario().length()<3 || entity.getNomeUsuario().isBlank()){
+            throw new ValidationException("O nome do usuário deve ter mais que 3 caracteres e não pode ser nulo!");
         }
 
-        if(repository.findByUser(entity.getUsername()) != null){
+        if(repository.findByNomeUsuario(entity.getNomeUsuario()) != null){
             throw new ValidationException("Nome usuário já cadastrado!");
         }
 
-        if(entity.getPassword().length()>3 && entity.getPassword().length()< 12){
+        if(entity.getPassword().length()<3 || entity.getPassword().length()> 12){
             throw  new ValidationException("Senha tem que ter no mínimo 3 caracteres e menor que 12 caracteres");
         }
-        if(entity.getUseremail().isBlank()){
+
+        if (entity.getEmail() == null || entity.getEmail().isBlank()) {
             throw new ValidationException("E-mail não pode ser vazio!");
         }
+
         return repository.save(entity);
     }
 
@@ -46,6 +48,7 @@ public class UsuarioService {
         Optional<Usuario> encontrado = repository.findById(id);
         if (encontrado.isPresent()) {
             Usuario usuario = encontrado.get();
+            usuario.setNomeUsuario(alterado.getNomeUsuario());
             usuario.setPassword(alterado.getPassword());
             usuario.setTipo(alterado.getTipo());
             return repository.save(usuario);

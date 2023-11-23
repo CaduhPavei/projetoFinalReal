@@ -3,12 +3,13 @@ package com.senac.projetoFinal.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
 public class Agendamento extends EntityId{
 
-    //@many to one
+    @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     @Column(name="data",nullable = true)

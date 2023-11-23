@@ -6,13 +6,13 @@ import java.time.LocalDate;
 @MappedSuperclass
 public class Pessoa extends EntityId{
 
-    @Column(name="nome",nullable = false)
+    @Column(name="nome")
     private String nome;
-    @Column(name="endereco",nullable = true)
+    @Column(name="endereco")
     private String endereco;
-    @Column(name="data_nascimento",nullable = false)
+    @Column(name="data_nascimento")
     private LocalDate dataNascimento;
-    @Column(name="email",nullable = false)
+    @Column(name="email")
     private String email;
 
 

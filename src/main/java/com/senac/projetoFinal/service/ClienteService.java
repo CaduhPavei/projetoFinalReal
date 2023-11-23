@@ -16,12 +16,16 @@ public class ClienteService {
     private ClienteRepository repository;
 
     public Pessoa salvar(Cliente entity) {
-        if(entity.getNome().length()<3){
-            throw new ValidationException("O nome deve ter mais que 3 caracteres");
+        if(entity.getNome().length()<3 || entity.getNome().isBlank()){
+            throw new ValidationException("O nome deve ter mais que 3 caracteres e não pode ser nulo!");
         }
 
         if(repository.findByCpf(entity.getCpf()) != null){
             throw new ValidationException("Já existe um cliente com esse CPF cadastrado!");
+        }
+
+        if (entity.getEmail() == null || entity.getEmail().isBlank()) {
+            throw new ValidationException("E-mail não pode ser vazio!");
         }
         return repository.save(entity);
     }

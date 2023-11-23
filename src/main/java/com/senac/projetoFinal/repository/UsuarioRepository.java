@@ -4,6 +4,6 @@ import com.senac.projetoFinal.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    public Usuario findByUser(String userName);
+    public Usuario findByNomeUsuario(String userName);
 
 }
