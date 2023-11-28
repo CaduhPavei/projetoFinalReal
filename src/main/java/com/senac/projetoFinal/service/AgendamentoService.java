@@ -1,5 +1,6 @@
 package com.senac.projetoFinal.service;
 
+import com.senac.projetoFinal.enterprise.ValidationException;
 import com.senac.projetoFinal.models.Agendamento;
 import com.senac.projetoFinal.repository.AgendamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,13 @@ public class AgendamentoService {
     private AgendamentoRepository repository;
 
     public Agendamento salvar(Agendamento entity) {
+        Agendamento existingEntityByData = repository.findByData(entity.getData());
+        Agendamento existingEntityByHora = repository.findByHora(entity.getHora());
+
+        if (existingEntityByData != null && existingEntityByHora != null
+                && existingEntityByData.getId().equals(existingEntityByHora.getId())) {
+            throw new ValidationException("Data e hora já agendados!");
+        }
 
         return repository.save(entity);
     }
@@ -31,7 +39,8 @@ public class AgendamentoService {
         if(encontrado.isPresent()){
             Agendamento agendamento = encontrado.get();
 
-            agendamento.setUsuario(alterado.getUsuario());
+            agendamento.setCliente(alterado.getCliente());
+            agendamento.setBarbeiro(alterado.getBarbeiro());
             agendamento.setData(alterado.getData());
             agendamento.setHora(alterado.getHora());
             agendamento.setReservado(alterado.getReservado());

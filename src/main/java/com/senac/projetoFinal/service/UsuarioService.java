@@ -2,7 +2,6 @@ package com.senac.projetoFinal.service;
 
 import com.senac.projetoFinal.enterprise.ValidationException;
 import com.senac.projetoFinal.models.Usuario;
-import com.senac.projetoFinal.models.Venda;
 import com.senac.projetoFinal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class UsuarioService {
             throw new ValidationException("Nome usuário já cadastrado!");
         }
 
-        if(entity.getPassword().length()<3 || entity.getPassword().length()> 12){
+        if(entity.getSenha().length()<3 || entity.getSenha().length()> 12){
             throw  new ValidationException("Senha tem que ter no mínimo 3 caracteres e menor que 12 caracteres");
         }
 
@@ -48,9 +47,11 @@ public class UsuarioService {
         Optional<Usuario> encontrado = repository.findById(id);
         if (encontrado.isPresent()) {
             Usuario usuario = encontrado.get();
+
             usuario.setNomeUsuario(alterado.getNomeUsuario());
-            usuario.setPassword(alterado.getPassword());
+            usuario.setSenha(alterado.getSenha());
             usuario.setTipo(alterado.getTipo());
+            usuario.setEmail(alterado.getEmail());
             return repository.save(usuario);
         }
         return null;

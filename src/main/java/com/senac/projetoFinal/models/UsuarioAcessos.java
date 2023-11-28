@@ -2,7 +2,6 @@ package com.senac.projetoFinal.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class UsuarioAcessos extends EntityId{

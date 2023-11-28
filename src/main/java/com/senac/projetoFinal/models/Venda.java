@@ -9,6 +9,9 @@ import java.time.LocalDate;
 @Entity
 public class Venda extends EntityId{
 
+    @ManyToOne
+    @JoinColumn(name= "id_produto")
+    private Produto produto;
     @Column(name = "data_venda")
     private LocalDate dataVenda;
     @Column(name = "observacao")
@@ -16,6 +19,14 @@ public class Venda extends EntityId{
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 
     public LocalDate getDataVenda() {
         return dataVenda;

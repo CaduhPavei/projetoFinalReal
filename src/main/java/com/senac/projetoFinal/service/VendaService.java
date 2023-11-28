@@ -31,6 +31,8 @@ public class VendaService {
         Optional<Venda> encontrado = repository.findById(id);
         if (encontrado.isPresent()) {
             Venda venda = encontrado.get();
+
+            venda.setProduto(alterado.getProduto());
             venda.setDataVenda(alterado.getDataVenda());
             venda.setCliente(alterado.getCliente());
             venda.setObservacao(alterado.getObservacao());

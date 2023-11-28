@@ -17,6 +17,9 @@ public class Servico extends EntityId{
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "barbeiro_id")
+    private Barbeiro barbeiro;
 
     public String getTipoServico() {
         return tipoServico;
@@ -50,6 +53,14 @@ public class Servico extends EntityId{
         this.cliente = this.cliente;
     }
 
+    public Barbeiro getBarbeiro() {
+        return barbeiro;
+    }
+
+    public void setBarbeiro(Barbeiro barbeiro) {
+        this.barbeiro = barbeiro;
+    }
+
     @Override
     public String toString() {
         return "Servico{" +
@@ -57,6 +68,7 @@ public class Servico extends EntityId{
                 ", descricaoServico='" + descricaoServico + '\'' +
                 ", valor=" + valor +
                 ", cliente=" + cliente +
+                ", barbeiro=" + barbeiro +
                 '}';
     }
 }

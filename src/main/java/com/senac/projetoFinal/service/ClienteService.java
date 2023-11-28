@@ -24,9 +24,6 @@ public class ClienteService {
             throw new ValidationException("Já existe um cliente com esse CPF cadastrado!");
         }
 
-        if (entity.getEmail() == null || entity.getEmail().isBlank()) {
-            throw new ValidationException("E-mail não pode ser vazio!");
-        }
         return repository.save(entity);
     }
 
@@ -43,7 +40,7 @@ public class ClienteService {
             Cliente cliente = encontrado.get();
 
             cliente.setCpf(alterado.getCpf());
-            cliente.setEmail(alterado.getEmail());
+            cliente.setContato(alterado.getContato());
             cliente.setEndereco(alterado.getEndereco());
             cliente.setDataNascimento(alterado.getDataNascimento());
             cliente.setNome(alterado.getNome());

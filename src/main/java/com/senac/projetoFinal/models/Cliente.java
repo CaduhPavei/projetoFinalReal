@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 
 @Entity
 public class Cliente extends Pessoa{
+
+
     @Column(name="cpf",nullable = false)
     private String cpf;
+
 
     public String getCpf() {
         return cpf;
@@ -19,7 +22,7 @@ public class Cliente extends Pessoa{
     @Override
     public String toString() {
         return "Cliente{" +
-                "cpf='" + cpf + '\'' +
+                ", cpf='" + cpf + '\'' +
                 '}';
     }
 }

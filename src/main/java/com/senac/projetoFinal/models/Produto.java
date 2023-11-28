@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 public class Produto extends EntityId{
+
     @Column(name="quantidade")
     private Integer quantidade;
     @Column(name="marca")

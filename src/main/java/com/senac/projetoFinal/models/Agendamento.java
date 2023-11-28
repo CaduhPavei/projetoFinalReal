@@ -5,26 +5,39 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Agendamento extends EntityId{
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "barbeiro_id")
+    private Barbeiro barbeiro;
     @Column(name="data",nullable = true)
     private LocalDate data;
     @Column(name="hora",nullable = true)
-    private LocalDate hora;
+    private LocalTime hora;
     @Column(name="reservado",nullable = true)
     private Boolean reservado;
 
-    public Usuario getUsuario() {
-        return usuario;
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Barbeiro getBarbeiro() {
+        return barbeiro;
+    }
+
+    public void setBarbeiro(Barbeiro barbeiro) {
+        this.barbeiro = barbeiro;
     }
 
     public LocalDate getData() {
@@ -35,11 +48,11 @@ public class Agendamento extends EntityId{
         this.data = data;
     }
 
-    public LocalDate getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(LocalDate hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
@@ -54,7 +67,8 @@ public class Agendamento extends EntityId{
     @Override
     public String toString() {
         return "Agendamento{" +
-                "usuario=" + usuario +
+                "cliente=" + cliente +
+                ", barbeiro=" + barbeiro +
                 ", data=" + data +
                 ", hora=" + hora +
                 ", reservado=" + reservado +
